@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class UserController {
 	@Autowired
 	private UserService Servicio;
 	
-	@PostMapping("/singUp")
+	@PostMapping("/singup")
 	public ResponseEntity<Map<String,String>> singUp(@RequestBody UserModel user){
 		Map<String,String> mensage = new HashMap<>();
 		String response = Servicio.RegisterUser(user);
@@ -30,10 +31,22 @@ public class UserController {
 	}
 	
 	@GetMapping("login")
-	public ResponseEntity<Object> login(){
+	public ResponseEntity<Object> login(@RequestBody UserModel user){
 		
-		Map<String,String> mensage = new HashMap<>();
-		mensage.put("msj", "registro exitoso");
+		Map<String,Object> mensage = new HashMap<>();
+		
+		//if(Servicio.loginUser(user)==true) {
+			Optional<UserModel> data = Servicio.getUserModel(user);
+			if(data.get().getPassword().equals(user.getPassword()))
+			{
+				data.get().setEMail(user.getEMail());
+				mensage.put("User", data);
+				mensage.put("msj", "login exitoso");
+			}else {
+			mensage.put("msj", "Usuario o password incorrecto");
+			}
+			
+		
 		return new ResponseEntity<>(mensage,null,HttpStatus.OK);
 	}
 

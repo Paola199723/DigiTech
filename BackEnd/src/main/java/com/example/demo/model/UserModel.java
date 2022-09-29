@@ -19,15 +19,15 @@ public class UserModel {
 	Integer id;
 	String name;
 	String lastName;
-	String EMail;
+	String email;
 	String password;
 	
 	
-	public UserModel(String name, String lastName, String eMail, String password) {
+	public UserModel(String name, String lastName, String email, String password) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
-		EMail = eMail;
+		this.email = email;
 		this.password = password;
 	}
 	public UserModel() {
@@ -47,10 +47,10 @@ public class UserModel {
 		this.lastName = lastName;
 	}
 	public String getEMail() {
-		return EMail;
+		return email;
 	}
 	public void setEMail(String eMail) {
-		EMail = eMail;
+		email = eMail;
 	}
 	public String getPassword() {
 		return password;

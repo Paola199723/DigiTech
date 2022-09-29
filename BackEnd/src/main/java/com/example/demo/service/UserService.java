@@ -29,7 +29,7 @@ public class UserService {
 	 * */
 	
 	public String RegisterUser(UserModel user) {
-		Optional<UserModel> data = repository.findByEMail(user.getEMail());
+		Optional<UserModel> data = repository.findByemail(user.getEMail());
 		if(data.isEmpty()) {
 			repository.save(user);
 			return"Usuario guardado";
@@ -37,6 +37,21 @@ public class UserService {
 		}
 		return "Usuario ya existe";
 		
+	}
+	
+	public boolean loginUser(UserModel user) {
+		Optional<UserModel> data = repository.findByemail(user.getEMail());
+		if(data.isEmpty()) {
+			if(data.get().getPassword().equals(user.getPassword())==true){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Optional<UserModel> getUserModel(UserModel user) {
+		Optional<UserModel> data = repository.findByemail(user.getEMail());
+		return data;
 	}
 	
 	public UserModel UserId(Integer id) {
