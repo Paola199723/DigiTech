@@ -17,25 +17,37 @@ public class UserModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
+	Integer type;
 	String name;
 	String lastName;
 	String email;
 	String password;
 	
 	
-	public UserModel(String name, String lastName, String email, String password) {
+	public UserModel(String name, String lastName, String email, String password, Integer type) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		// tipo de usuario : 1= cliente 0=  administrador banco
+		this.type = type;
 	}
 	public UserModel() {
 		super();
 	}
-	
+	public Integer getid() {
+		return id;
+	}
 	public String getName() {
 		return name;
+	}
+	
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	public void setName(String name) {
 		this.name = name;

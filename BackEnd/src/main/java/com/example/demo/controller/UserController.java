@@ -34,17 +34,14 @@ public class UserController {
 	public ResponseEntity<Object> login(@RequestBody UserModel user){
 		
 		Map<String,Object> mensage = new HashMap<>();
-		
-		//if(Servicio.loginUser(user)==true) {
-			Optional<UserModel> data = Servicio.getUserModel(user);
-			if(data.get().getPassword().equals(user.getPassword()))
-			{
-				data.get().setEMail(user.getEMail());
-				mensage.put("User", data);
-				mensage.put("msj", "login exitoso");
-			}else {
+		Optional<UserModel> data = Servicio.getUserModel(user);
+		if(data.get().getPassword().equals(user.getPassword())){
+			data.get().setEMail(user.getEMail());
+			mensage.put("User", data);
+			mensage.put("msj", "login exitoso");
+		}else {
 			mensage.put("msj", "Usuario o password incorrecto");
-			}
+		}
 			
 		
 		return new ResponseEntity<>(mensage,null,HttpStatus.OK);
