@@ -24,8 +24,8 @@ public class UserController {
 	@PostMapping("/singUp")
 	public ResponseEntity<Map<String,String>> singUp(@RequestBody UserModel user){
 		Map<String,String> mensage = new HashMap<>();
-		String response = Servicio.RegisterUser(user);
-		mensage.put("msj", response);
+		//String response = Servicio.RegisterUser(user);
+		mensage.put("msj", "response");
 		return new ResponseEntity<>(mensage,null,HttpStatus.OK);
 	}
 	

@@ -17,11 +17,8 @@ public class UserModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	
 	String name;
 	String lastName;
-	
-	@Column(name = "EMail", nullable = false)
 	String EMail;
 	String password;
 	

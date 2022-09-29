@@ -28,15 +28,7 @@ public class UserService {
 	 * */
 	
 	public String RegisterUser(UserModel user) {
-		UserModel user2 = new UserModel();
-		if(user2.validate(user)== true) {
-			if(repository.findByEmail(user.getEMail()).isEmpty()) {
-				repository.save(user);
-				return "Usuario Registrado Correctamente";
-			}
-			return "Usuario ya existe";
-		}
-		return "Datos incompletos";
+		return"dato completo";
 	}
 	
 	public UserModel UserId(Integer id) {
